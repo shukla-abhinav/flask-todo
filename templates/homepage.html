@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<p class="heading">My Todo App</p>
+
+<form action="/add/todo" method="post">
+    <div class="mb-3 col-md-10 content">
+      <label for="title" class="title">Title</label>
+      <input type="text" class="form-control" name="title">
+    </div>
+    <div class="mb-3 col-sm-10 content">
+      <label for="description" class="title">Description</label>
+      <input type="text" class="form-control" name="description">
+    </div>
+    <div class="add">
+        <button type="submit" class="btn btn-success">Add Todo</button>
+    </div>
+    
+  </form>
+
+  <p class="all-todos">All Todos </p>
+<div class="todo">
+    {% if todos %}
+        {% for todo in todos %}
+            <div class="">
+                <span class="title">{{ todo.title }}</span>
+                <span class="desc">{{ todo.description }}</span>
+                <div class="space">
+                <a class="btn btn-primary buttons" href="/update/{{ todo.id }}">Edit</a>
+                <a class="btn btn-danger buttons" href="/delete/{{ todo.id }}">Delete</a>
+                <hr class="line">
+            </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
+    {% endblock %}
